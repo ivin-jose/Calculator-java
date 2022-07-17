@@ -17,7 +17,7 @@ public class Calculator {
 		
 		// Label
 		
-		JLabel displayLabel=new JLabel("New calculator with java ");
+		JLabel displayLabel=new JLabel("New calculator ");
 		displayLabel.setBounds(30, 50, 500, 35);
 		displayLabel.setBackground(Color.gray);
 		displayLabel.setOpaque(true);
