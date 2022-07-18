@@ -3,6 +3,7 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class Calculator {
@@ -12,13 +13,13 @@ public class Calculator {
 		// Window Frame 
 		JFrame frame=new JFrame("Calculator");
 		frame.setLayout(null);
-		frame.setSize(600, 600);
+		frame.setSize(550, 600);
 		frame.setLocation(100, 50);
 		
 		// Label
 		
-		JLabel displayLabel=new JLabel("New calculator ");
-		displayLabel.setBounds(30, 50, 500, 35);
+		JTextField displayLabel=new JTextField("0");
+		displayLabel.setBounds(30, 50, 470, 35);
 		displayLabel.setBackground(Color.gray);
 		displayLabel.setOpaque(true);
 		displayLabel.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -147,6 +148,7 @@ public class Calculator {
 		JButton pieButton=new JButton("Pie");
 		pieButton.setBounds(240, 400, 60, 60);
 		pieButton.setBackground(Color.white);
+		pieButton.setForeground(Color.blue);
 		pieButton.setOpaque(true);
 		frame.add(pieButton);
 		
