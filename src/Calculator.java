@@ -15,7 +15,8 @@ public class Calculator implements ActionListener{
 	
 	//to store the number temporarily 
 	
-	String olvalue;
+	String oldvalue;
+	String result;
 	
 	boolean isoperaterClicked=false;
 	
@@ -44,10 +45,11 @@ public class Calculator implements ActionListener{
 	JButton deleteButton;
 	
 	// theme button
-	JButton greyButton;
+	JButton grayButton;
 	JButton redButton;
 	JButton yellowButton;
 	JButton greenButton;
+	JButton defaultButton;
 	
 	
 	
@@ -261,12 +263,53 @@ public class Calculator implements ActionListener{
 		// green Button
 		
 		greenButton=new JButton("green");
-		greenButton.setBounds(140, 480, 80, 40);
-		greenButton.setBackground(Color.white);
-		frame.add(greenButton);
-		greenButton.setForeground(Color.ORANGE);
+		greenButton.setBounds(125, 480, 80, 20);
+		greenButton.setBackground(Color.green);
+		greenButton.setForeground(Color.black);
+		greenButton.setOpaque(true);
 		greenButton.setFont(new Font("italic",Font.PLAIN,13));
 		greenButton.addActionListener(this);
+		frame.add(greenButton);
+		
+		// yellow button
+		yellowButton=new JButton("yellow");
+		yellowButton.setBounds(225, 480, 80, 20);
+		yellowButton.setBackground(Color.yellow);
+		yellowButton.setForeground(Color.black);
+		yellowButton.setOpaque(true);
+		yellowButton.setFont(new Font("italic",Font.PLAIN,13));
+		yellowButton.addActionListener(this);
+		frame.add(yellowButton);
+		
+		// gray button
+		grayButton=new JButton("grey");
+		grayButton.setBounds(325, 480, 80, 20);
+		grayButton.setBackground(Color.LIGHT_GRAY);
+		grayButton.setForeground(Color.black);
+		grayButton.setOpaque(true);
+		grayButton.setFont(new Font("italic",Font.PLAIN,13));
+		grayButton.addActionListener(this);
+		frame.add(grayButton);
+		
+		// red button
+		redButton=new JButton("red");
+		redButton.setBounds(425, 480, 80, 20);
+		redButton.setBackground(Color.RED);
+		redButton.setForeground(Color.black);
+		redButton.setOpaque(true);
+		redButton.setFont(new Font("italic",Font.PLAIN,13));
+		redButton.addActionListener(this);
+		frame.add(redButton);
+		
+		// default button
+	    defaultButton=new JButton("Default");
+	    defaultButton.setBounds(25, 480, 80, 20);
+		defaultButton.setBackground(Color.white);
+		defaultButton.setForeground(Color.black);
+		defaultButton.setOpaque(true);
+		defaultButton.setFont(new Font("italic",Font.PLAIN,13));
+		defaultButton.addActionListener(this);
+		frame.add(defaultButton);
 		
 		
 		
@@ -279,6 +322,8 @@ public class Calculator implements ActionListener{
 		
 		
 		// checking button action 
+		
+		// number buttons
 		
 		if(e.getSource()==oneButton){
 			
@@ -392,31 +437,88 @@ public class Calculator implements ActionListener{
 				displayLabel.setText(displayLabel.getText()+"0");
 			}
 		}
+		
+		// operators
+		
 		else if (e.getSource()== additionButton) {
+			oldvalue = displayLabel.getText();
 			isoperaterClicked=true;
 			label.setText("+");
 			
+			
 		}
 		else if (e.getSource()== divisionButton) {
+			oldvalue = displayLabel.getText();
 			isoperaterClicked=true;
 			label.setText("/");
 			
 		}
 		else if (e.getSource()== multiplicationButton) {
+			oldvalue = displayLabel.getText();
 			isoperaterClicked=true;
 			label.setText("X");
 			
 		}
 		else if (e.getSource()== subtractionButton) {
+			oldvalue = displayLabel.getText();
 			isoperaterClicked=true;
 			label.setText("-");
 			
 		}
+		
+		
+		// mode changing
+		
+		else if (e.getSource()== greenButton){
+			displayLabel.setText("Mode changed to 'green' ");
+			label.setText("G");
+			frame.getContentPane().setBackground(Color.GREEN);
+			isoperaterClicked=true;
+		}
+		else if (e.getSource()== yellowButton){
+			displayLabel.setText("Mode changed to 'yellow' ");
+			label.setText("Y");
+			frame.getContentPane().setBackground(Color.YELLOW);
+			isoperaterClicked=true;
+		}
+		else if (e.getSource()== grayButton){
+			displayLabel.setText("Mode changed to 'gray' ");
+			label.setText("Gy");
+			frame.getContentPane().setBackground(Color.LIGHT_GRAY);
+			isoperaterClicked=true;
+		}
+		else if (e.getSource()== redButton){
+			displayLabel.setText("Mode changed to 'red' ");
+			label.setText("R");
+			frame.getContentPane().setBackground(Color.RED);
+			isoperaterClicked=true;
+		}
+		else if (e.getSource()== defaultButton){
+			displayLabel.setText("Mode changed to 'Default' ");
+			label.setText("D");
+			frame.getContentPane().setBackground(Color.white);
+			isoperaterClicked=true;
+		}
+		
+		// clear button
+		
 		else if (e.getSource()== clearButton){
-			displayLabel.setText(" ");
+			displayLabel.setText("");
 			label.setText("");
 			frame.getContentPane().setBackground(Color.GRAY);
+			isoperaterClicked=true;
 		}
+		
+		// equals button
+		else if (e.getSource()== equalButton){
+			displayLabel.setText(oldvalue);
+			label.setText("Ans");
+			isoperaterClicked=true;
+		}
+			
+			
+			
+		
 	}
 
 }
