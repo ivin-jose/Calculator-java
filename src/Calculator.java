@@ -3,6 +3,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,7 +19,7 @@ public class Calculator implements ActionListener{
 	//to store the number temporarily 
 	
 	String oldvalue;
-	String result;
+	String newvalue;
 	
 	boolean isoperaterClicked=false;
 	
@@ -50,7 +53,7 @@ public class Calculator implements ActionListener{
 	JButton yellowButton;
 	JButton greenButton;
 	JButton defaultButton;
-	
+			
 	
 	
 	public Calculator() {
@@ -319,8 +322,7 @@ public class Calculator implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		
+	
 		// checking button action 
 		
 		// number buttons
@@ -440,10 +442,13 @@ public class Calculator implements ActionListener{
 		
 		// operators
 		
+		
+		
 		else if (e.getSource()== additionButton) {
 			oldvalue = displayLabel.getText();
 			isoperaterClicked=true;
-			label.setText("+");
+			label.setText("+");			
+			
 			
 			
 		}
@@ -466,6 +471,23 @@ public class Calculator implements ActionListener{
 			
 		}
 		
+		// equals button
+		
+		else if (e.getSource()== equalButton){
+			isoperaterClicked=true;	
+			
+			newvalue = displayLabel.getText();
+			float oldvalueF=Float.parseFloat(oldvalue);
+			float newvalueF=Float.parseFloat(newvalue);
+			
+			// result 
+			float result = oldvalueF+newvalueF;
+			displayLabel.setText(result+"");
+			
+			
+			
+			label.setText("Ans");
+		}
 		
 		// mode changing
 		
@@ -500,7 +522,7 @@ public class Calculator implements ActionListener{
 			isoperaterClicked=true;
 		}
 		
-		// clear button
+		// clear but   ton
 		
 		else if (e.getSource()== clearButton){
 			displayLabel.setText("");
@@ -509,12 +531,6 @@ public class Calculator implements ActionListener{
 			isoperaterClicked=true;
 		}
 		
-		// equals button
-		else if (e.getSource()== equalButton){
-			displayLabel.setText(oldvalue);
-			label.setText("Ans");
-			isoperaterClicked=true;
-		}
 			
 			
 			
