@@ -22,6 +22,9 @@ public class Calculator implements ActionListener{
 	String newvalue;
 	
 	boolean isoperaterClicked=false;
+	boolean acheck=false;
+	boolean mcheck=false;
+	boolean dcheck=false;
 	
 	JFrame frame;
 	JLabel label;
@@ -285,10 +288,10 @@ public class Calculator implements ActionListener{
 		frame.add(yellowButton);
 		
 		// gray button
-		grayButton=new JButton("grey");
+		grayButton=new JButton("Dark");
 		grayButton.setBounds(325, 480, 80, 20);
-		grayButton.setBackground(Color.LIGHT_GRAY);
-		grayButton.setForeground(Color.black);
+		grayButton.setBackground(Color.black);
+		grayButton.setForeground(Color.white);
 		grayButton.setOpaque(true);
 		grayButton.setFont(new Font("italic",Font.PLAIN,13));
 		grayButton.addActionListener(this);
@@ -305,7 +308,7 @@ public class Calculator implements ActionListener{
 		frame.add(redButton);
 		
 		// default button
-	    defaultButton=new JButton("Default");
+	    defaultButton=new JButton("Light");
 	    defaultButton.setBounds(25, 480, 80, 20);
 		defaultButton.setBackground(Color.white);
 		defaultButton.setForeground(Color.black);
@@ -445,6 +448,7 @@ public class Calculator implements ActionListener{
 		
 		
 		else if (e.getSource()== additionButton) {
+			acheck=true;
 			oldvalue = displayLabel.getText();
 			isoperaterClicked=true;
 			label.setText("+");			
@@ -453,12 +457,14 @@ public class Calculator implements ActionListener{
 			
 		}
 		else if (e.getSource()== divisionButton) {
+			dcheck=true;
 			oldvalue = displayLabel.getText();
 			isoperaterClicked=true;
 			label.setText("/");
 			
 		}
 		else if (e.getSource()== multiplicationButton) {
+			mcheck=true;
 			oldvalue = displayLabel.getText();
 			isoperaterClicked=true;
 			label.setText("X");
@@ -479,10 +485,33 @@ public class Calculator implements ActionListener{
 			newvalue = displayLabel.getText();
 			float oldvalueF=Float.parseFloat(oldvalue);
 			float newvalueF=Float.parseFloat(newvalue);
-			
+			 
 			// result 
-			float result = oldvalueF+newvalueF;
-			displayLabel.setText(result+"");
+			// addition
+			if (acheck) {
+				float result = oldvalueF+newvalueF;
+				displayLabel.setText(result+"");
+				acheck=false;
+			}
+			// multiplication
+			else if(mcheck) {
+				float multi = oldvalueF*newvalueF;
+				displayLabel.setText(multi+"");
+				mcheck=false;
+			}
+			// division
+			else if(dcheck) {
+				float multi = oldvalueF/newvalueF;
+				displayLabel.setText(multi+"");
+				dcheck=false;
+			}
+			// subtraction
+			else {
+				dcheck=true;
+				float subtraction = oldvalueF-newvalueF;
+				displayLabel.setText(subtraction+"");
+				dcheck=false;
+			}
 			
 			
 			
@@ -504,9 +533,9 @@ public class Calculator implements ActionListener{
 			isoperaterClicked=true;
 		}
 		else if (e.getSource()== grayButton){
-			displayLabel.setText("Mode changed to 'gray' ");
-			label.setText("Gy");
-			frame.getContentPane().setBackground(Color.LIGHT_GRAY);
+			displayLabel.setText("Mode changed to 'Dark' ");
+			label.setText("D");
+			frame.getContentPane().setBackground(Color.black);
 			isoperaterClicked=true;
 		}
 		else if (e.getSource()== redButton){
@@ -516,17 +545,17 @@ public class Calculator implements ActionListener{
 			isoperaterClicked=true;
 		}
 		else if (e.getSource()== defaultButton){
-			displayLabel.setText("Mode changed to 'Default' ");
-			label.setText("D");
+			displayLabel.setText("Mode changed to 'light' ");
+			label.setText("L");
 			frame.getContentPane().setBackground(Color.white);
 			isoperaterClicked=true;
 		}
 		
-		// clear but   ton
+		// clear button
 		
 		else if (e.getSource()== clearButton){
 			displayLabel.setText("");
-			label.setText("");
+			label.setText(" ");
 			frame.getContentPane().setBackground(Color.GRAY);
 			isoperaterClicked=true;
 		}
